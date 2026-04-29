@@ -11,7 +11,7 @@ contract VaultMsgSender {
     function deposit() public payable {}
 
     function withdraw() public {
-        require(msg.sender == owner);
+        require(msg.sender == owner, "Access denied");
         (bool ok,) = msg.sender.call{value: address(this).balance}("");
         require(ok, "transfer failed");
     }
